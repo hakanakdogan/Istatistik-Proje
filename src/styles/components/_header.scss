@@ -1,0 +1,13 @@
+.cr-header {
+  margin-bottom: $spacer * .5;
+  border-bottom: $border-width solid $border-color;
+}
+
+.header-text {
+  font-size: 1.2rem;
+  color: #fc5c7d;
+  font-weight: 500;
+}
+.header-text:hover {
+  text-decoration: none;
+}
