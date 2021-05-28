@@ -53,7 +53,7 @@ export const HarmonikOrtalama = () => {
             }
 
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>
-                <CardTitle tag="h5">Aritmetik ortalama</CardTitle>
+                <CardTitle tag="h5">Harmonik ortalama</CardTitle>
                 <CardText>Harmonik ortalama, gözlem sonuçlarının terslerinin aritmetik ortalamasının tersidir. Örn: n/(1/x<sub>1</sub>+ 1/x<sub>2</sub>+ ...+ 1/x<sub>n</sub>)</CardText>
 
             </Card>
