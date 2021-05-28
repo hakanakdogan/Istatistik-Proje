@@ -7,6 +7,13 @@ Bu proje, Bursa Teknik Üniversitesi Bilgisayar Mühendisliği, 2. sınıf Olas�
 <br>
 adresinden erişebilirsiniz.
 
+### Proje Ekibi
+- [Erhan Baştürk](https://github.com/basturkerhan)
+- [Hakan Akdoğan](https://github.com/hakanakdogan)
+- [Mert Karavelioğlu](https://github.com/MertKaravelioglu)
+- [Adem Pelit](https://github.com/adem-pelit)
+
+
 ### Projenin Yapabildiği Hesaplamalar
 - Aritmetik Ortalama
 - Geometrik Ortalama
@@ -35,9 +42,3 @@ npm start
 ```
 komutu kullanarak 3000 portunda projeyi görüntüleyebilirsiniz.
 Eğer kendi bilgisayarınızda çalıştırmak istemezseniz, **https://kozmos-istatistik.vercel.app/** adresi üzerinden projeyi doğrudan kullanabilirsiniz.
-
-### Proje Ekibi
-- [Erhan Baştürk](https://github.com/basturkerhan)
-- [Hakan Akdoğan](https://github.com/hakanakdogan)
-- [Mert Karavelioğlu](https://github.com/MertKaravelioglu)
-- [Adem Pelit](https://github.com/adem-pelit)
