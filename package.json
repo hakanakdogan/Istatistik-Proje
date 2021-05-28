@@ -40,8 +40,7 @@
     "serve": "serve -s build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run start"
+    "eject": "react-scripts eject"
   },
   "browserslist": [
     ">0.2%",

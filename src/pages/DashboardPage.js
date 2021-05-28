@@ -98,8 +98,9 @@ class DashboardPage extends React.Component {
             inverse={false}
             icon={FaGithub}
             title="Github'da Görüntüle"
-            subtitle="Projenin dosyalarına gözat"
+            subtitle={<a href="https://github.com/hakanakdogan/Istatistik-Proje" target="_blank"><Button onClick="">Github</Button></a>}
           />
+
         </CardGroup>
 
         <center><h3>İletişime Geç</h3></center>
