@@ -1,27 +1,43 @@
-# [React Reduction - Free Admin Template Built with React and Bootstrap4](https://reduction-admin.github.io/react-reduction/)
+## Bursa Teknik Üniversitesi Bilgisayar Mühendisliği Bölümü 2. Sınıf Olasılık ve İstatistik Projesi
 
-![React Reduction](public/img/screenshots/reduction-admin.jpg?raw=true 'React Reduction')
+### Proje Hakkında:
+Bu proje, Bursa Teknik Üniversitesi Bilgisayar Mühendisliği, 2. sınıf Olasılık ve İstatistik dersi için hazırlanmıştır. Proje, bir web sayfası olarak hizmet vermektedir. Projenin çalıştığı web sayfasına;
+<br>
+**https://kozmos-istatistik.vercel.app/**
+<br>
+adresinden erişebilirsiniz.
 
-## Preview
+### Projenin Yapabildiği Hesaplamalar
+- Aritmetik Ortalama
+- Geometrik Ortalama
+- Harmonik Ortalama
+- Ortanca (Medyan)
+- Tepe Değer (Mod)
+- Ortalama Mutlak Sapma
+- Standart Sapma
+- Varyans
+- Değişim Katsayısı
+- Dağılım Grafiği Çizimi
+- Permütasyon
+- Kombinasyon
+- Histogram Grafiği Çizimi
+- Hipotez Testi
 
-You can check out [live preview](https://reduction-admin.github.io/react-reduction/).
+### Projeyi Kendi Bilgisayarımda Nasıl Çalıştırırım ?
+Proje dosyalarını indirdikten sonra klasöre konumlanın. Ardından, 
+```
+npm i
+```
+komutu ile projenin bağımlı olduğu paketleri indiriniz.
+Ardından,
+```
+npm start
+```
+komutu kullanarak 3000 portunda projeyi görüntüleyebilirsiniz.
+Eğer kendi bilgisayarınızda çalıştırmak istemezseniz, **https://kozmos-istatistik.vercel.app/** adresi üzerinden projeyi doğrudan kullanabilirsiniz.
 
-## Quick Start
-
-1.  Clone the repo `git clone https://github.com/reduction-admin/react-reduction.git`
-2.  Go to your project folder from your terminal
-3.  Run: `npm install` or `yarn install`
-4.  After install, run: `npm run start` or `yarn start`
-5.  It will open your browser(http://localhost:3000)
-
-## Note
-
-React Reduction is built on top of [Create React App](https://github.com/facebook/create-react-app), which means all features that create-react-app supports are available.
-
-To enable basic Google Analytics page tracking, you can add "REACT_APP_GOOGLE_ANALYTICS" variable in .env(or create env.production) file. For example, `REACT_APP_GOOGLE_ANALYTICS=xxxxxx` like this.
-
-## More Bootstrap Themes
-
-If you want more premium or free React Bootstrap themes, you can get it [here](https://flatlogic.com/admin-dashboards?ref=w7yTz44arn)
-
-[![Flat Logic](public/img/screenshots/flatlogic.com_admin-dashboards_react.png)](https://flatlogic.com/admin-dashboards?ref=w7yTz44arn)
+### Proje Ekibi
+- [Erhan Baştürk](https://github.com/basturkerhan)
+- [Hakan Akdoğan](https://github.com/hakanakdogan)
+- [Mert Karavelioğlu](https://github.com/MertKaravelioglu)
+- [Adem Pelit](https://github.com/adem-pelit)
