@@ -15,11 +15,17 @@ export const DagilimGrafigi = () => {
   const [data, setData] = useState("");
   const [graphicDatas, setGraphicDatas] = useState(null);
   const [name, setName] = useState("");
+  const [firstTime, setFirstTime] = useState(true);
+  const [isNan, setIsNan] = useState(false)
 
   const hesapla = (e) => {
     e.preventDefault();
+    setIsNan(false);
     let gDatas = [];
     let array = data.split(",").map(Number);
+    array.map((el) => {
+      if (isNaN(el)) setIsNan(true)
+    })
     let o = ortancadeger(array);
     let ao = aritmetikOrtalamaHesapFunc(data);
     let td = tepedeger(array).maxTekrar;
@@ -35,6 +41,7 @@ export const DagilimGrafigi = () => {
     gDatas.push({ name: "END", value: 0 });
 
     setGraphicDatas(gDatas);
+    setFirstTime(false);
   };
 
   return (
@@ -54,30 +61,9 @@ export const DagilimGrafigi = () => {
         </button>
       </form>
 
-      <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>
-        <CardTitle tag="h5">Dağılım grafiği</CardTitle>
-        <CardText>
-          Dağılım grafiği 3 veriye göre çizilir;
-                    <br /><br />
-          <ol>
-            <li>Aritmetik Ortalama</li>
-            <li>Tepe Değer</li>
-            <li>Ortanca</li>
-          </ol>
 
-                    Bu verilere göre eğer;
-                    <ul>
-            <li>[Aritmetik Ortalama = Tepe Değer = Ortanca] olursa simetrik dağılım,</li>
-            <li>[Aritmetik Ortalama > Ortanca > Tepe Değer] olursa sağa çarpık dağılım,</li>
-            <li>[Tepe Değer > Ortanca > Aritmetik Ortalama] olursa sola çarpık dağılım</li>
-          </ul>
-
-                    elde edilir.
-                    </CardText>
-
-      </Card>
-
-      {graphicDatas ? (
+      {console.log("graphicDATAs" + graphicDatas)}
+      {graphicDatas && !isNan ? (
         <div className="mt-5">
           <Card>
             <Line
@@ -94,7 +80,34 @@ export const DagilimGrafigi = () => {
             </CardBody>
           </Card>
         </div>
-      ) : null}
+      ) : !firstTime ?
+        <div className="alert alert-danger" role="alert">
+          Hatalı Değer Girildi
+        </div> :
+        null
+      }
+      <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>
+        <CardTitle tag="h5">Dağılım grafiği</CardTitle>
+        <CardText>
+          Dağılım grafiği 3 veriye göre çizilir;
+                    <br /><br />
+          <ol>
+            <li>Aritmetik Ortalama</li>
+            <li>Tepe Değer</li>
+            <li>Ortanca</li>
+          </ol>
+
+                    Bu verilere göre eğer;
+                    <ul>
+            <li>[Aritmetik Ortalama = Tepe Değer = Ortanca] olursa simetrik dağılım,</li>
+            <li>[Aritmetik Ortalama {'>'} Ortanca {'>'} Tepe Değer] olursa sağa çarpık dağılım,</li>
+            <li>[Tepe Değer {'>'} Ortanca {'>'} Aritmetik Ortalama] olursa sola çarpık dağılım</li>
+          </ul>
+
+                    elde edilir.
+                    </CardText>
+
+      </Card>
     </Page>
   );
 };

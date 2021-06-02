@@ -8,6 +8,8 @@ export const OrtancaDeger = () => {
         elemanlar: ""
     });
     const [ortancaDgr, setortancaDgr] = useState(0);
+    const [firstTime, setFirstTime] = useState(true);
+    const [isNan, setIsNan] = useState(false)
     const ortancadeger = (arr) => {
         const sortedArr = arr.sort((a, b) => {
             return b - a
@@ -25,18 +27,20 @@ export const OrtancaDeger = () => {
     }
     const onSubmit = (e) => {
         e.preventDefault();
+        setIsNan(false);
         let array = data.elemanlar.split(",").map(Number);
-        let isNan = false;
+
         array.forEach((el) => {
             if (isNaN(el)) {
-                isNan = true;
+                setIsNan(true);
             }
         })
+
         if (!isNan) {
             setortancaDgr(ortancadeger(array));
 
         }
-
+        setFirstTime(false);
     }
     return (
         <Page title="Ortanca Değer (Medyan)" breadcrumbs={[{ name: 'medyan', active: true }]}>
@@ -50,11 +54,15 @@ export const OrtancaDeger = () => {
                 <button type="submit" className="w-100 btn btn-secondary mt-2">Gönder</button>
             </form>
 
-            {ortancaDgr !== 0 ?
+            {ortancaDgr !== 0 && !isNan ?
                 <div className="alert alert-primary" role="alert">
                     Hesaplanan Ortanca Değer: {ortancaDgr}
                 </div>
-                : null
+                : !firstTime ?
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi
+                </div> :
+                    null
             }
 
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>

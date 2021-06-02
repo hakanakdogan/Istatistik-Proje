@@ -9,32 +9,36 @@ export const TepeDeger = () => {
     });
     const [firstTime, setFirstTime] = useState(true);
     const [tepeDgr, setTepeDgr] = useState({
-        maxTekrar: 0,
+        maxTekrar: [],
         siklik: 0
     });
     const [hataliGiris, setHataliGiris] = useState(false);
 
 
-    const tepedeger = (array) => {
-        if (array.length === 0)
-            return null;
-        var modeMap = {};
-        var maxEl = array[0], maxCount = 1;
+    function tepedeger(array) {
+        if (array.length == 0) return null;
+
+        var modeMap = {},
+            maxEl = array[0],
+            maxCount = 1;
+
         for (var i = 0; i < array.length; i++) {
             var el = array[i];
-            if (modeMap[el] == null)
-                modeMap[el] = 1;
-            else
-                modeMap[el]++;
+
+            if (modeMap[el] == null) modeMap[el] = 1;
+            else modeMap[el]++;
+
             if (modeMap[el] > maxCount) {
                 maxEl = el;
                 maxCount = modeMap[el];
+            } else if (modeMap[el] == maxCount) {
+                maxEl += "&" + el;
+                maxCount = modeMap[el];
             }
         }
-
         return {
-            maxTekrar: maxEl,
-            siklik: modeMap[maxEl]
+            maxTekrar: maxEl.length > 1 ? maxEl.split('&') : maxEl,
+            siklik: maxCount
         };
     }
     const onChange = (e) => {
@@ -56,10 +60,12 @@ export const TepeDeger = () => {
             });
             setHataliGiris(false)
         } else {
+
             setHataliGiris(true)
         }
         setFirstTime(false);
     }
+
     return (
         <Page title="Tepe Değer (Mod)" breadcrumbs={[{ name: 'mod', active: true }]}>
             <form onSubmit={e => onSubmit(e)} className="mt-4" >
@@ -72,9 +78,11 @@ export const TepeDeger = () => {
                 <button type="submit" className="w-100 btn btn-secondary mt-2">Gönder</button>
             </form>
 
-            {tepeDgr.maxTekrar > 0 && tepeDgr.siklik > 1 && !hataliGiris ?
+            {(tepeDgr.maxTekrar[0] > 0 || tepeDgr.maxTekrar > 0) && tepeDgr.siklik > 1 && !hataliGiris ?
                 <div className="alert alert-primary" role="alert">
-                    Hesaplanan Tepe Değer: {tepeDgr.maxTekrar}  <br />
+                    Hesaplanan Tepe Değer: {typeof (tepeDgr.maxTekrar) == "object" ? tepeDgr.maxTekrar.map((el, index) => {
+                    return (index + 1) < tepeDgr.maxTekrar.length ? `${el} ve ` : `${el}`
+                }) : tepeDgr.maxTekrar}  <br />
                     Sıklık: {tepeDgr.siklik}
                 </div>
 

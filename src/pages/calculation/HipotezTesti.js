@@ -78,6 +78,10 @@ export const HipotezTesti = () => {
       zVeri = hipotezTabloDegeriHesapla(1 - (aDuzeyi / 2));
       msg = (zVeri > sonuc) ? `z = |${sonuc.toFixed(2)}| < ${zVeri.toFixed(2)} Reddedilmez` : `z = |${sonuc.toFixed(2)}| >= ${zVeri.toFixed(2)} Reddedilir`
     }
+    else if (hipotezMod == 2) {
+      zVeri = hipotezTabloDegeriHesapla(1 - aDuzeyi);
+      msg = (zVeri > sonuc) ? `Z Test = |${sonuc.toFixed(2)}| ve Kritik Nokta = ${zVeri.toFixed(2)} Reddedilmez` : `Z Test = |${sonuc}| ve Kritik Nokta = ${zVeri} Reddedilir`
+    }
     setMesaj(msg);
   };
 
@@ -126,6 +130,20 @@ export const HipotezTesti = () => {
                 {`!= ${HDegeri}`}
               </label>
             </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="exampleRadios"
+                value="<"
+                onClick={e => setHipotezMod(2)}
+              />
+              <label class="form-check-label" for="exampleRadios3">
+                {`< ${HDegeri}`}
+              </label>
+            </div>
+
           </div>
         </div>
 

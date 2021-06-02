@@ -8,6 +8,7 @@ export const HarmonikOrtalama = () => {
         elemanlar: ""
     });
     const [harmonikOrt, setHarmonikOrt] = useState(0);
+    const [firstTime, setFirstTime] = useState(true);
     const harmonicMean = (arr) => {
         let sum = 0;
         for (let i = 0; i < arr.length; i++) {
@@ -31,7 +32,7 @@ export const HarmonikOrtalama = () => {
             setHarmonikOrt(harmonicMean(array));
 
         }
-
+        setFirstTime(false);
     }
     return (
         <Page title="Harmonik Ortalama" breadcrumbs={[{ name: 'harmonik ortalama', active: true }]}>
@@ -45,11 +46,15 @@ export const HarmonikOrtalama = () => {
                 <button type="submit" className="w-100 btn btn-secondary mt-2">Gönder</button>
             </form>
 
-            {harmonikOrt !== 0 ?
+            {harmonikOrt !== 0 && !isNaN(harmonikOrt) ?
                 <div className="alert alert-primary" role="alert">
                     Hesaplanan Harmonik Ortalama: {harmonikOrt}
                 </div>
-                : null
+                : !firstTime ?
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi
+                </div> :
+                    null
             }
 
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>

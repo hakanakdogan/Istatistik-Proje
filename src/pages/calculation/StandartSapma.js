@@ -7,10 +7,12 @@ import { Card, CardTitle, CardText } from 'reactstrap';
 export const StandartSapma = () => {
     const [data, setData] = useState("");
     const [standartSapma, setStandartSapma] = useState(0);
+    const [firstTime, setFirstTime] = useState(true);
 
     const hesapla = (e) => {
         e.preventDefault();
         setStandartSapma(standartSapmaHesaplamaFunc(data));
+        setFirstTime(false);
     }
 
     return (
@@ -24,11 +26,15 @@ export const StandartSapma = () => {
                 <button type="submit" className="w-100 btn btn-secondary mt-2">Gönder</button>
             </form>
 
-            {standartSapma !== 0 ?
+            {standartSapma !== 0 && !isNaN(standartSapma) ?
                 <div className="alert alert-primary" role="alert">
                     Hesaplanan Standart Sapma: {standartSapma}
                 </div>
-                : null
+                : !firstTime ?
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi Ya Da Standart Sapma Mevcut Değil
+                    </div> :
+                    null
             }
 
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>

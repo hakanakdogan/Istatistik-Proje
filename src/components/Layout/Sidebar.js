@@ -46,6 +46,7 @@ const navDiger = [
 
 const navItems = [
   { to: '/', name: 'ana sayfa', exact: true, Icon: MdDashboard },
+  { to: '/nasil-kullanilir', name: 'nasıl kullanılır', exact: true, Icon: MdDashboard },
 ];
 
 const bem = bn.create('sidebar');

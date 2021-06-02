@@ -6,10 +6,12 @@ import { aritmetikOrtalamaHesapFunc } from './hesapFonksiyonları';
 export const AritmetikOrtalama = () => {
     const [data, setData] = useState("");
     const [aritmeticMean, setAritmeticMean] = useState(0);
+    const [firstTime, setFirstTime] = useState(true);
 
     const hesapla = (e) => {
         e.preventDefault();
         setAritmeticMean(aritmetikOrtalamaHesapFunc(data));
+        setFirstTime(false);
     }
 
     return (
@@ -23,11 +25,15 @@ export const AritmetikOrtalama = () => {
                 <button type="submit" className="w-100 btn btn-secondary mt-2">Gönder</button>
             </form>
 
-            {aritmeticMean !== 0 ?
+            {aritmeticMean !== 0 && !isNaN(aritmeticMean) ?
                 <div class="alert alert-primary" role="alert">
                     Hesaplanan Aritmetik Ortalama: {aritmeticMean}
                 </div>
-                : null
+                : !firstTime ?
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi
+                    </div> :
+                    null
             }
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>
                 <CardTitle tag="h5">Aritmetik ortalama</CardTitle>

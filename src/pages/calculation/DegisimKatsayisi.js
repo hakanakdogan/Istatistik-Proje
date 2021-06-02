@@ -6,12 +6,14 @@ import { aritmetikOrtalamaHesapFunc, standartSapmaHesaplamaFunc } from './hesapF
 export const DegisimKatsayisi = () => {
     const [data, setData] = useState("");
     const [degisimKatsayisi, setdegisimKatsayisi] = useState(0);
+    const [firstTime, setFirstTime] = useState(true);
 
     const hesapla = (e) => {
         e.preventDefault();
         let aritmetikOrtalama = aritmetikOrtalamaHesapFunc(data);
         let standartSapma = standartSapmaHesaplamaFunc(data);
         setdegisimKatsayisi((standartSapma / aritmetikOrtalama) * 100);
+        setFirstTime(false);
     }
 
     return (
@@ -25,11 +27,15 @@ export const DegisimKatsayisi = () => {
                 <button type="submit" className="w-100 btn btn-secondary mt-2">Gönder</button>
             </form>
 
-            {degisimKatsayisi !== 0 ?
+            {degisimKatsayisi !== 0 && !isNaN(degisimKatsayisi) ?
                 <div class="alert alert-primary" role="alert">
                     Hesaplanan Değişim Katsayısı: {degisimKatsayisi}
                 </div>
-                : null
+                : !firstTime ?
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi
+                </div> :
+                    null
             }
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>
                 <CardTitle tag="h5">Değişim Katsayısı</CardTitle>

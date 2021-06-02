@@ -9,6 +9,8 @@ export const Histogram = () => {
     const [grupSayisi, setGrupSayisi] = useState(0);
     const [charData, setCharData] = useState(null);
     const [isCalculated, setIsCalculated] = useState(false);
+    const [firstTime, setFirstTime] = useState(true);
+    const [isNan, setIsNan] = useState(false)
 
     function aralik(dizi, min, max) {
         let adet = 0;
@@ -20,7 +22,15 @@ export const Histogram = () => {
 
     function hesapla(e) {
         e.preventDefault();
+        setIsNan(true);
         let dizi = data.split(",").map(Number);
+        dizi.map((el) => {
+            if (isNaN(el)) {
+
+                setIsNan(false)
+            }
+        })
+
         dizi.sort((a, b) => (a - b));
         let aciklik = dizi[dizi.length - 1] - dizi[0];
         let grupGenisligi = Math.ceil(aciklik / grupSayisi);
@@ -61,6 +71,7 @@ export const Histogram = () => {
             }]
         })
         setIsCalculated(true);
+        setFirstTime(false);
     }
 
 
@@ -79,8 +90,8 @@ export const Histogram = () => {
                     onChange={e => setGrupSayisi(e.target.value)} />
                 <button type="submit" className="w-100 btn btn-secondary mt-2">Gönder</button>
             </form>
-
-            {isCalculated ?
+            {console.log(isNan)}
+            {isCalculated && isNan === true ?
                 <Card>
                     <CardBody>
                         <Bar
@@ -90,7 +101,11 @@ export const Histogram = () => {
                             }} />
                     </CardBody>
                 </Card>
-                : null
+                : !firstTime ?
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi
+                    </div> :
+                    null
             }
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>
                 <CardTitle tag="h5">Histogram</CardTitle>

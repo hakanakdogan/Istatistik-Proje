@@ -5,6 +5,7 @@ import { Card, CardTitle, CardText } from 'reactstrap';
 export const OrtalamaMutlakSapma = () => {
     const [data, setData] = useState("");
     const [ortalamaMSapma, setortalamaMSapma] = useState(0);
+    const [firstTime, setFirstTime] = useState(true);
 
     const hesapla = (e) => {
         e.preventDefault();
@@ -30,6 +31,7 @@ export const OrtalamaMutlakSapma = () => {
             // 3- Veri sayısına böl
             setortalamaMSapma(mesafeToplami / dizi.length);
         }
+        setFirstTime(false);
     }
 
     return (
@@ -43,11 +45,15 @@ export const OrtalamaMutlakSapma = () => {
                 <button type="submit" className="w-100 btn btn-secondary mt-2">Gönder</button>
             </form>
 
-            {ortalamaMSapma !== 0 ?
+            {ortalamaMSapma !== 0 && !isNaN(ortalamaMSapma) ?
                 <div class="alert alert-primary" role="alert">
                     Hesaplanan Ortalama Mutlak Sapma: {ortalamaMSapma}
                 </div>
-                : null
+                : !firstTime ?
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi
+                </div> :
+                    null
             }
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>
                 <CardTitle tag="h5">Ortalama Mutlak Sapma</CardTitle>

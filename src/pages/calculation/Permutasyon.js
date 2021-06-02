@@ -8,24 +8,35 @@ export const Permutasyon = () => {
         eleman: "",
         secim: ""
     })
-    const [permutasyon, setPermutasyon] = useState(0);
+    const [permutasyon, setPermutasyon] = useState(-1);
+    const [firstTime, setFirstTime] = useState(true);
     const permutasyonF = (n, r) => {
         let sonuc = 1;
+
+        if (n === r) {
+            return 1
+        } else if (r > n) {
+            return -1
+        }
         for (let i = 0; i < r; i++) sonuc *= n - i;
         return sonuc;
     }
     const onChange = (e) => {
+
         setData({ ...data, [e.target.id]: Number(e.target.value) })
     }
     const onSubmit = (e) => {
         e.preventDefault();
-        if (!isNaN(data.eleman) && !isNaN(data.secim) && data.eleman !== 0 && data.secim !== 0) {
+        if (!isNaN(data.eleman) && !isNaN(data.secim) && data.eleman !== 0 && data.secim >= 0) {
             console.log(data.eleman, data.secim)
             const sonuc = permutasyonF(data.eleman, data.secim);
             console.log(sonuc);
             setPermutasyon(sonuc);
         }
-
+        
+         setFirstTime(false);
+        
+        
     }
     return (
         <Page title="Permütasyon" breadcrumbs={[{ name: 'permutasyon', active: true }]}>
@@ -45,15 +56,21 @@ export const Permutasyon = () => {
                 <button type="submit" className="w-100 btn btn-secondary"  >Gönder</button>
             </form>
 
-            {permutasyon !== 0 ?
+            { permutasyon !== -1 ?
                 <div className="alert alert-primary" role="alert">
-                    Hesaplanan Permutasyon: {permutasyon}
+                    {data.secim === 0 ? <span>Hesaplanan Permütasyon: {1}</span> : <span>Hesaplanan Permütasyon: {permutasyon}</span>}
+
 
                 </div>
                 :
-                null
+                !firstTime ?
+                    
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi
+                        
+                </div> :
+                    null
             }
-
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>
                 <CardTitle tag="h5">Permütasyon</CardTitle>
                 <CardText>

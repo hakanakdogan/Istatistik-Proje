@@ -8,6 +8,7 @@ export const GeometrikOrtalama = () => {
         elemanlar: ""
     });
     const [geometrikOrt, setGeometrikOrt] = useState(0);
+    const [firstTime, setFirstTime] = useState(true);
     const geometricMean = (arr) => {
         let hesap = 1;
         for (let i = 0; i < arr.length; i++) {
@@ -33,7 +34,7 @@ export const GeometrikOrtalama = () => {
             setGeometrikOrt(geometricMean(array));
 
         }
-
+        setFirstTime(false)
     }
     return (
         <Page title="Geometrik Ortalama" breadcrumbs={[{ name: 'geometrik ortalama', active: true }]}>
@@ -51,7 +52,11 @@ export const GeometrikOrtalama = () => {
                 <div className="alert alert-primary" role="alert">
                     Hesaplanan Geometrik Ortalama: {geometrikOrt}
                 </div>
-                : null
+                : !firstTime ?
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi
+            </div> :
+                    null
             }
 
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>

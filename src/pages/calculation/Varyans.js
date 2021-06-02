@@ -5,6 +5,7 @@ import { Card, CardTitle, CardText } from 'reactstrap';
 export const Varyans = () => {
     const [data, setData] = useState("");
     const [varyans, setVaryans] = useState(0);
+    const [firstTime, setFirstTime] = useState(true);
 
     const hesapla = (e) => {
         e.preventDefault();
@@ -31,7 +32,9 @@ export const Varyans = () => {
                 farkKaresiOrtalama += eleman;
             });
             setVaryans(farkKaresiOrtalama / farkKaresi.length);
+
         }
+        setFirstTime(false);
     }
 
     return (
@@ -45,11 +48,15 @@ export const Varyans = () => {
                 <button type="submit" className="w-100 btn btn-secondary mt-2">Gönder</button>
             </form>
 
-            {varyans !== 0 ?
+            {varyans !== 0 && !isNaN(varyans) ?
                 <div class="alert alert-primary" role="alert">
                     Hesaplanan Varyans (Popülasyonun Standart Sapması): {varyans}
                 </div>
-                : null
+                : !firstTime ?
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi Ya Da Varyans Mevcut Değil
+                </div> :
+                    null
             }
 
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>

@@ -8,14 +8,15 @@ export const Kombinasyon = () => {
         eleman: "",
         secim: ""
     })
-    const [permutasyon, setPermutasyon] = useState(0);
+    const [kombinasyon, setkombinasyon] = useState(-1);
+    const [firstTime, setFirstTime] = useState(true);
     const faktoriyelF = (sayi) => {
         if (sayi === 0) return 1;
         let sum = 1;
         for (let i = 2; i <= sayi; i++) sum *= i;
         return sum;
     }
-    const permutasyonF = (n, r) => {
+    const kombinasyonF = (n, r) => {
         let sonuc = 1;
         for (let i = 0; i < r; i++) sonuc *= n - i;
         return sonuc;
@@ -25,14 +26,12 @@ export const Kombinasyon = () => {
     }
     const onSubmit = (e) => {
         e.preventDefault();
-        if (!isNaN(data.eleman) && !isNaN(data.secim) && data.eleman !== 0 && data.secim !== 0) {
-            console.log(data.eleman, data.secim)
-            const perm = permutasyonF(data.eleman, data.secim);
+        if (!isNaN(data.eleman) && !isNaN(data.secim) && data.eleman !== 0 && data.secim >= 0) {
+            const perm = kombinasyonF(data.eleman, data.secim);
             const fakt = faktoriyelF(data.secim);
-            console.log(perm / fakt);
-            setPermutasyon(perm / fakt);
+            setkombinasyon(perm / fakt);
         }
-
+        setFirstTime(false);
     }
     return (
         <Page title="Kombinasyon" breadcrumbs={[{ name: 'kombinasyon', active: true }]}>
@@ -52,13 +51,18 @@ export const Kombinasyon = () => {
                 <button type="submit" className="w-100 btn btn-secondary"  >Gönder</button>
             </form>
 
-            {permutasyon !== 0 ?
+            { kombinasyon !== -1 && (data.eleman > 0 && data.secim >= 0) ?
                 <div className="alert alert-primary" role="alert">
-                    Hesaplanan Kombinasyon: {permutasyon}
+                    {data.secim === 0 ? <span>Hesaplanan Kombinasyon: {1}</span> : <span>Hesaplanan Kombinasyon: {kombinasyon}</span>}
+
 
                 </div>
                 :
-                null
+                !firstTime ?
+                    <div className="alert alert-danger" role="alert">
+                        Hatalı Değer Girildi
+                </div> :
+                    null
             }
             <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333', margin: "1rem 0 0 0" }}>
                 <CardTitle tag="h5">Kombinasyon</CardTitle>
